@@ -65,6 +65,7 @@ func _exit_state()->void:
 	player.is_sliding = false
 	player.default_shape.disabled = false
 	player.slide_shape.disabled = true
+	sliding_from_fall = false
 	
 	## Start slide CD when exiting the slide state
 	slide_cd_timer.start()
