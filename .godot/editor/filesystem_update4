@@ -1,13 +1,7 @@
-res://components/state_machine.tscn
 res://components/state_machine.gd
-res://components/state.tscn
-res://components/state.gd
-res://components/player_states/player_idle.gd
 res://scene/player.tscn
-res://scene/player.gd
-res://components/player_states/player_run.gd
-res://components/player_states/player_fall.gd
+res://components/player_states/player_idle.gd
 res://components/player_states/player_jump.gd
-res://scene/test_world.tscn
-res://scene/stats_tracker.gd
+res://components/player_states/player_fall.gd
+res://components/player_states/player_run.gd
 res://components/player_states/player_slide.gd

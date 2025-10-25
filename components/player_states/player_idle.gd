@@ -1,7 +1,10 @@
 class_name player_idle
 extends State
 
-## Nodes
+## NOTE each state can have access to different nodes, for example, if a state requires for some reason
+## access to the player's camera (to shake it, etc) you can add it here and on initialize(), grab it from
+## the player!! to then use it accordingly in this state (or you can even access it player.camera)
+
 var state_machine: StateMachine
 var player : Player
 var animation_player: AnimationPlayer

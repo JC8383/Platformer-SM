@@ -1,10 +1,12 @@
 class_name player_run
 extends State
 
-## Nodes
+## NOTE each state can have access to different nodes, for example, if a state requires for some reason
+## access to the player's camera (to shake it, etc) you can add it here and on initialize(), grab it from
+## the player!! to then use it accordingly in this state (or you can even access it player.camera)
+
 var state_machine: StateMachine
 var player : Player
-var sprite : Sprite2D
 var animation_player: AnimationPlayer
 
 ## Where this state can go TO
@@ -20,7 +22,6 @@ signal started_fall
 func initialize():
 	state_machine = get_parent()
 	player = state_machine.get_parent()
-	sprite = player.sprite
 	animation_player = player.animation_player
 
 func _ready() -> void:
