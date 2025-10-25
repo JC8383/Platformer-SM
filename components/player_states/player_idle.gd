@@ -10,13 +10,14 @@ var player : Player
 var animation_player: AnimationPlayer
 
 ## Where this state can go TO
-var to_signals : Array= ["run","slide","jump","fall"]
+var to_signals : Array= ["run","slide","jump","fall", "knockdown"]
 
 ## Signals which trigger other states
 signal started_run
 signal started_slide
 signal started_jump
 signal started_fall
+signal started_knockdown
 
 ## Node ready, turn its processing off
 func initialize():
@@ -42,6 +43,12 @@ func _exit_state()->void:
 func _physics_process(_delta: float) -> void:
 	## Idle is always on floor!
 	if player.is_on_floor():
+		
+		## Debug knockdown player!
+		if Input.is_action_just_pressed("debug_knockdown"):
+			started_knockdown.emit()
+			return
+		
 		## Movement axis
 		movement_direction = Input.get_axis("left","right")
 		

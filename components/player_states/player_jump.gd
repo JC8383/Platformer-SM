@@ -10,12 +10,13 @@ var player : Player
 var animation_player: AnimationPlayer
 
 ## Where this state can go TO
-var to_signals : Array= ["fall"]
+var to_signals : Array= ["fall","knockdown"]
 
 @export var jump_velocity : float = -400.0
 
 ## Signals which trigger other states
 signal started_fall
+signal started_knockdown
 
 ## Node ready, turn its processing off
 func initialize():
@@ -41,6 +42,11 @@ func _exit_state()->void:
 func _physics_process(_delta: float) -> void:
 	## Fall gravity
 	player.velocity.y += player.get_gravity().y * _delta
+	
+	## Debug knockdown player!
+	if Input.is_action_just_pressed("debug_knockdown"):
+		started_knockdown.emit()
+		return
 	
 	## Movement axis
 	movement_direction = Input.get_axis("left","right")

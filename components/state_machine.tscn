@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvvmvafd0x25e"]
+[gd_scene load_steps=8 format=3 uid="uid://dvvmvafd0x25e"]
 
 [ext_resource type="Script" uid="uid://dscptqvkslp6m" path="res://components/state_machine.gd" id="1_lcmjf"]
 [ext_resource type="Script" uid="uid://chdpnsg7mmvr3" path="res://components/player_states/player_idle.gd" id="2_crgmj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c2dceh7hxbu4j" path="res://components/player_states/player_slide.gd" id="4_6sk23"]
 [ext_resource type="Script" uid="uid://qy8jtlpbx6b2" path="res://components/player_states/player_jump.gd" id="5_2pvwj"]
 [ext_resource type="Script" uid="uid://cbxmrksbsve3g" path="res://components/player_states/player_fall.gd" id="6_4sn8o"]
+[ext_resource type="Script" uid="uid://c01vrh8gaj1i" path="res://components/player_states/player_knockdown.gd" id="7_6sk23"]
 
 [node name="state_machine" type="Node" node_paths=PackedStringArray("state")]
 script = ExtResource("1_lcmjf")
@@ -30,3 +31,7 @@ metadata/_custom_type_script = "uid://qy8jtlpbx6b2"
 [node name="player_fall" type="Node" parent="."]
 script = ExtResource("6_4sn8o")
 metadata/_custom_type_script = "uid://cbxmrksbsve3g"
+
+[node name="player_knockdown" type="Node" parent="."]
+script = ExtResource("7_6sk23")
+metadata/_custom_type_script = "uid://c01vrh8gaj1i"

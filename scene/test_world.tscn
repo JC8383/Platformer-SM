@@ -66,5 +66,19 @@ layout_mode = 2
 [node name="sliding_available_label" type="Label" parent="UI/stats_tracker"]
 layout_mode = 2
 
+[node name="info" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Press \"K\" to Knockdown the player!
+You can be knocked down from Idle, Run, Fall and Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
 [node name="player" parent="." instance=ExtResource("1_krlkw")]
 position = Vector2(456, 272)

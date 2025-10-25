@@ -1,4 +1,4 @@
-class_name player_fall
+class_name player_knockdown
 extends State
 
 ## NOTE each state can have access to different nodes, for example, if a state requires for some reason
@@ -11,11 +11,13 @@ var sprite: Sprite2D
 var animation_player: AnimationPlayer
 
 ## Where this state can go TO
-var to_signals : Array= ["idle", "knockdown"]
+var to_signals : Array= ["idle"]
+
+var knockdown_strength: float = 100.0
+var landed: bool = false
 
 ## Signals which trigger other states
 signal started_idle
-signal started_knockdown
 
 ## Node ready, turn its processing off
 func initialize():
@@ -23,6 +25,8 @@ func initialize():
 	player = state_machine.get_parent()
 	sprite = player.sprite
 	animation_player = player.animation_player
+	
+	animation_player.connect("animation_finished", _on_knockdown_anim_finished)
 
 func _ready() -> void:
 	set_physics_process(false)
@@ -30,34 +34,43 @@ func _ready() -> void:
 ## Entering!, play anim and turn its speciic physics process func ON
 func _enter_state()->void:
 	set_physics_process(true)
-	animation_player.play("falling")
+	## Knock upwards
+	player.velocity.y = -knockdown_strength
+	## Double strenght knockback backwards
+	player.velocity.x = player.get_direction() * (knockdown_strength * 2) * -1
+	animation_player.play("knockdown_start")
 
 ## Exiting! turn its speciic physics process func OFF, cleanup any needed things here!
 func _exit_state()->void:
+	landed = false
 	set_physics_process(false)
 
 ## Fall code
 func _physics_process(_delta: float) -> void:
-	## Touched Floor! Start idling
-	if player.is_on_floor():
-		started_idle.emit()
+	## Already landed!, let anim player exit the state!
+	if landed:
 		return
-	else:
-		
-		## Debug knockdown player!
-		if Input.is_action_just_pressed("debug_knockdown"):
-			started_knockdown.emit()
+	
+	## Touched Floor! Start impact anim and recovery!
+	if player.is_on_floor():
+		## Wait until start is at least done to land
+		if animation_player.current_animation != "knockdown_start":
+			animation_player.play("knockdown_land")
+			## Stop momentum
+			player.velocity = Vector2.ZERO
+			landed = true
 			return
-		
-		## Movement axis
-		movement_direction = Input.get_axis("left","right")
-		## Flip sprite when running!
-		player.flip_sprite(movement_direction)
-		
+	else:
 		## Fall gravity
 		player.velocity.y += player.get_gravity().y * _delta
-		## Movement while in the air only when is not sliding!
-		if not player.is_sliding:
-			player.velocity.x = movement_direction * player.SPEED
 		
-		player.move_and_slide()
+		## If knocked downwards, start falling
+		if player.velocity.y >= 0: 
+			animation_player.play("knockdown_falling")
+	player.move_and_slide()
+
+func _on_knockdown_anim_finished(anim_name: String) -> void:
+	## Getting up, once up, idle again
+	if anim_name == "knockdown_land":
+		started_idle.emit()
+		return

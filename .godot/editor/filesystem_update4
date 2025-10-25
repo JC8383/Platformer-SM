@@ -5,3 +5,7 @@ res://components/player_states/player_jump.gd
 res://components/player_states/player_fall.gd
 res://components/player_states/player_run.gd
 res://components/player_states/player_slide.gd
+res://components/player_states/player_knockdown.gd
+res://components/state_machine.tscn
+res://scene/test_world.tscn
+res://scene/stats_tracker.gd
