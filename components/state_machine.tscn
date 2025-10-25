@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvvmvafd0x25e"]
+
+[ext_resource type="Script" uid="uid://dscptqvkslp6m" path="res://components/state_machine.gd" id="1_lcmjf"]
+[ext_resource type="Script" uid="uid://chdpnsg7mmvr3" path="res://components/player_states/player_idle.gd" id="2_crgmj"]
+[ext_resource type="Script" uid="uid://bkv1k55fvsqwj" path="res://components/player_states/player_run.gd" id="3_qdi3l"]
+[ext_resource type="Script" uid="uid://c2dceh7hxbu4j" path="res://components/player_states/player_slide.gd" id="4_6sk23"]
+[ext_resource type="Script" uid="uid://qy8jtlpbx6b2" path="res://components/player_states/player_jump.gd" id="5_2pvwj"]
+[ext_resource type="Script" uid="uid://cbxmrksbsve3g" path="res://components/player_states/player_fall.gd" id="6_4sn8o"]
+
+[node name="state_machine" type="Node" node_paths=PackedStringArray("state")]
+script = ExtResource("1_lcmjf")
+state = NodePath("player_idle")
+
+[node name="player_idle" type="Node" parent="."]
+script = ExtResource("2_crgmj")
+metadata/_custom_type_script = "uid://chdpnsg7mmvr3"
+
+[node name="player_run" type="Node" parent="."]
+script = ExtResource("3_qdi3l")
+metadata/_custom_type_script = "uid://bkv1k55fvsqwj"
+
+[node name="player_slide" type="Node" parent="."]
+script = ExtResource("4_6sk23")
+metadata/_custom_type_script = "uid://c2dceh7hxbu4j"
+
+[node name="player_jump" type="Node" parent="."]
+script = ExtResource("5_2pvwj")
+metadata/_custom_type_script = "uid://qy8jtlpbx6b2"
+
+[node name="player_fall" type="Node" parent="."]
+script = ExtResource("6_4sn8o")
+metadata/_custom_type_script = "uid://cbxmrksbsve3g"

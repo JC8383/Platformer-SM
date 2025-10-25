@@ -1,0 +1,14 @@
+Label
+Node
+player_fall
+player_jump
+player_slide
+player_run
+StateMachine
+player_idle
+CPUParticles2D
+CollisionShape2D
+StaticBody2D
+ColorRect
+VBoxContainer
+CanvasLayer
