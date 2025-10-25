@@ -1,2 +1,3 @@
 res://components/state_machine.tscn
 res://components/player_states/player_slide.gd
+res://components/player_states/player_fall.gd

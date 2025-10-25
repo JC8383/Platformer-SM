@@ -56,8 +56,6 @@ func _physics_process(_delta: float) -> void:
 		
 		## Fall gravity
 		player.velocity.y += player.get_gravity().y * _delta
-		## Movement while in the air only when is not sliding!
-		if not player.is_sliding:
-			player.velocity.x = movement_direction * player.SPEED
+		player.velocity.x = movement_direction * player.SPEED
 		
 		player.move_and_slide()
